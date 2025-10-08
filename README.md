@@ -78,3 +78,29 @@ Nhược điểm:
 * Trigger tự động chạy, nên khó hiểu soát và sửa nếu có lỗi
 * Không thể thay thế được hoàn toàn phần logic của ứng dụng,
   chỉ dừng lại ở phần logic của Database
+
+  -----------------------Transaction-----------------------
+  Là một nhóm các câu lệnh SQL. Nếu một transaction được thực hiện thành công, tất cả các thay đổi dữ liệu được thực hiện được lưu vào cơ sở dữ liệu. Nếu một transaction bị lỗi và được rollback, thì tất cả các sửa đổi dữ liệu sẽ bị xóa (dữ liệu được khôi phục về trạng thái trước khi thực hiện transaction)
+  -Đảm bảo tính toàn vẹn của dữ liệu (ACID):
+
+  - Atomicity (tính nguyên tử): Một là tiến trình sẽ thành công, 2 là sẽ
+    chẳng có sự thay đổi nào về dữ liệu nếu gặp sự cố
+    Ví dụ: A chuyển tiền cho B. Nếu thành công thì tài khoản của A bị trừ tiền và tài khoản của B được cộng số tiền tương ứng. Nếu 1 trong 2 quá
+    trình gặp vấn đề thì hệ thống sẽ rollback lại toàn bộ, A không bị trừ tiền và B không được cộng tiền
+
+  - Consistency (tính nhất quán): Dữ liệu luôn phải tuân thủ những ràng buộc của CSDL
+    Ví dụ: Ví dụ chỉ còn 50 trong tài khoản, nhưng thực hiện giao dịch -70, sau khi tính toán thì lưu số âm, thì đó là không nhất quán => Sẽ không được commit
+
+  - Isolation (tính độc lập): Đảm bảo các giao dịch thực hiện đồng thời sẽ không bị ảnh hưởng lẫn nhau.
+    Ví dụ: Tài khoản có 50 , nếu cả A và B đồng thời thực hiện rút tiền => vi phạm tính độc lập. Lúc nào thì các giao dịch sẽ xử lý tuần tự, nếu ai thực hiện trước thì người sau sẽ ở trạng thái chờ.
+
+  - Durability (tính bền vững): Đảm bảo rằng một khi một giao dịch đã được xác nhận thành công, các thay đổi mà nó thực hiện đối với cơ sở dữ liệu sẽ là vĩnh viễn và không bị mất. Điều này đúng ngay cả khi hệ thống gặp phải sự cố đột ngột sau đó, như mất điện, sập server, hoặc lỗi phần cứng.
+
+  -----------------------Locks-----------------------
+
+- Là cơ chế mà database sử dụng để kiểm soát việc truy cập vào các tài nguyên như bảng, hàng, hoặc trang dữ liệu khi có nhiều transaction đang thực hiện đồng thời đảm bảo rằng các phiên (session) không đọc hoặc ghi vào các tài nguyên đang được giao dịch khác sử dụng.
+
+* Lock cấp độ hàng (Row Lock): Khóa 1 row dữ liệu.
+* Lock cấp độ trang (Page Lock): Khóa 1 page dữ liệu (bao gồm nhiều row).
+* Lock cấp độ bảng (Table Lock): Khóa toàn bộ bảng dữ liệu.
+* Lock cấp độ database (Database Lock): Khóa database.
