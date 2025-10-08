@@ -28,3 +28,36 @@ Các kiểu index:
 Nhược điểm:
 -Tốn bộ nhớ
 -Làm giảm hiệu năng các câu lệnh insert, update ,delete
+
+-----------------------PROCEDURES-----------------------
+
+- Lưu trữ câu lệnh SQL giúp bạn sử dụng lại nhiều lần
+- Kiểm soát quyền truy cập dễ dàng hơn bằng cách chỉ cho phép người dùng gọi Stored Procedure thay vì truy cập trực tiếp vào bảng dữ liệu
+- Đóng gói logic phức tạp trong Stored Procedure giúp giảm sai sót khi thực thi các lệnh SQL thủ công.
+- Không thể sử dụng procedure trong câu lệnh select
+
+-----------------------FUNCTION-----------------------
+
+- Được sử dụng để thực hiện một nhiệm vụ cụ thể và trả về kết quả.
+- Luôn trả về 1 kết quả, có thể là giá trị hoặc là bảng
+- Có thể sử dụng trong câu lệnh SELECT
+
+-----------------------So sánh procedure và function -----------------------
+
+- Procedure:
+
+* Thực hiện các thao tác trong truy vấn
+* Không nhất thiết phải trả về giá trị
+* Không thể dùng trục tiếp trong câu truy vấn
+
+- Function:
+
+* Thực hiện tính toán hoặc truy vấn dữ liệu
+* Phải trả về giá trị
+* Có thể dùng trục tiếp trong câu truy vấn
+
+  -----------------------VIEW-----------------------
+
+  - Tạo một “bảng ảo” từ dữ liệu gốc
+  - Tái sử dụng các truy vấn phức tạp bằng cách tạo thành 1 table
+  - Không làm thay đổi dữ liệu gốc
