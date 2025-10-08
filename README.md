@@ -61,3 +61,20 @@ Nhược điểm:
   - Tạo một “bảng ảo” từ dữ liệu gốc
   - Tái sử dụng các truy vấn phức tạp bằng cách tạo thành 1 table
   - Không làm thay đổi dữ liệu gốc
+
+-----------------------TRIGGER-----------------------
+
+- Là một đọn thủ tục được thực thi tự động khi một sự kiện cụ thể
+  xảy ra trên bảng
+
+- Ưu điểm:
+
+* Có thể bắt lỗi logic
+* Kiểm soát những thay đổi của dữ liệu trong bảng
+
+- Nhược điểm:
+
+* Nếu logic của trigger phức tạp, có thể làm giảm hiệu năng
+* Trigger tự động chạy, nên khó hiểu soát và sửa nếu có lỗi
+* Không thể thay thế được hoàn toàn phần logic của ứng dụng,
+  chỉ dừng lại ở phần logic của Database
